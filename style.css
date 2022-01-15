@@ -1,0 +1,135 @@
+@font-face { font-family: "MonumentExtended-Black"; 
+src: url('./assets/MonumentExtended-Black.woff2'); } 
+
+html {
+  font-size: 14px;
+  /*font-family: 'Arial', sans-serif;*/
+/*width: 1900px;*/
+  background-color: white;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+box-sizing: inherit;
+}
+
+
+
+h1 {
+    font-family: 'MonumentExtended-Black';
+    font-size: 4em;
+    color: 	#4B0082;
+}
+
+h3 {
+    font-family: "Zen Kaku Gothic New";
+    display: flex;
+    width: 1200px;
+    font-size: 1.8em;
+    color:  #001a00;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5em 2em;
+    letter-spacing: -0.011em;
+    font-size: 10px;
+}
+
+.wrapper {
+    /*border: 1px solid black;*/
+    /*overflow-x: scroll;*/
+    position: relative;
+    /*set position for the tooltip*/
+}
+
+.intro {
+    display: inline-block;
+    position: relative;
+}
+
+svg {
+    overflow: visible;
+}
+
+.score-dot {
+   color: grey;
+   mix-blend-mode: multiply; 
+}
+
+.tooltip {
+    opacity: 0;
+    position: absolute;
+    top: -12px;
+    left: 0;
+    padding: 0.6em 1em;
+    background: #fff;
+    text-align: center;
+    border: 1px solid #ddd;
+    z-index: 10;
+    transition: all 0.2s ease-out;
+    pointer-events: none;
+    font-family: "Zen Kaku Gothic New";
+}
+
+.tooltip:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    transform: translate(-50%, 50%) rotate(45deg);
+    transform-origin: center center;
+    z-index: 10;
+}
+
+.tooltip-similar {
+    margin-bottom: 0.3em;
+    margin-right: 0.5em;
+    font-size: 1.5em;
+}
+
+.tooltip-score {
+    margin-bottom: 0.3em;
+    font-size: 1.2em;
+    
+}
+
+.tooltip-similar-text {
+    margin-bottom: 0.3em;
+    font-size: 1.2em;
+    
+}
+
+#metric {
+    font-family: "MonumentExtended-Black";
+    font-size: 1.5em;
+    color: #006400;
+}
+
+footer {
+    font-family: "MonumentExtended-Black";
+    font-size: 1em;
+    color: #4B0082;
+}
+
+/*.legendtip {*/
+/*    opacity: 0;*/
+/*    position: absolute;*/
+/*    top: -12px;*/
+/*    left: 0;*/
+/*    padding: 0.6em 1em;*/
+/*    background: #fff;*/
+/*    text-align: center;*/
+/*    border: 1px solid #ddd;*/
+/*    z-index: 10;*/
+/*    transition: all 0.2s ease-out;*/
+/*    pointer-events: none;*/
+/*}*/

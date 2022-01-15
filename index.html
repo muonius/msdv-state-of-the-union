@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The American Promises</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300&family=Crimson+Text&family=Archivo+Black&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+
+<body>
+    <header>
+    </header>
+    <div id="wrapper" class="wrapper">
+        <div class="intro">
+        <h1>The American Promise</h1>
+        <h3>I came to the United States in 2012 because I was sold to the American Promise. The Promise, that all men are created Equal, that they are endowed by their Creator with certain unalienable rights that among these are Life, Liberty and the pursuit of Happiness. Today, through the lens of 10 years' presidential addresses to the Congress, I set out to explore the American Promise. I pre-processed and trained the speeches on a Gensim model in Python to return most similar words to each of these five promises: American, Equality, Life, Liberty and Happiness.</h3>
+     </div>
+     <select id="metric">
+    <option value='america' selected>American</option>
+    <option value='equality'>Equality</option>
+    <option value='life'>Life</option>
+    <option value='freedom'>Liberty</option>
+    <option value='happy'>Happiness</option>
+  </select>
+        <div id="tooltip" class="tooltip">
+            <div class="tooltip-similar">
+                Similar to: <span id="similar"></span>
+            </div>
+             <div class="tooltip-similar-text">
+                Keyword: <span id="similar-text"></span>
+            </div>
+            <div class="tooltip-score">
+                Similarity Score: <span id ="score"></span>
+            </div>
+            
+         <!--     <div id="legendtip" class="legendtip">-->
+         <!--       <div class="legendtip-topic">  -->
+         <!--       Topic: <span id ="topic"></span>-->
+         <!--       </div>-->
+         <!--        <div class="legendtip-pct">  -->
+         <!--       Pct of Total: <span id ="pct"></span>-->
+         <!--       </div>-->
+         <!--</div>-->
+        </div>
+    </div>
+    <script src="https://unpkg.com/d3"></script>
+    <script src="https://unpkg.com/@observablehq/stdlib@3"></script>
+    <script src="app.js"></script>
+    <footer>Yang Zhao | DVIA Assignment 3 | Fall 2021</footer>
+</body>
+
+</html>
