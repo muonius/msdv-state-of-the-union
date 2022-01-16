@@ -1,7 +1,7 @@
-## Assignment 3 - Visualize Textual and Qualitative Data
+##  Visualize Textual and Qualitative Data using State of the Union Addresses
 
 ### Summary
-Create a visualization using the provided State of the Union text corpus. 
+This is originally a weekly assignment of visualizing textual data at the Data Vis & Info Aesthetics class. I continued to work on it and fixed some remaining bugs after submitting the assignment.
 
 ### Process
 I chose to analyze the past 10 years State of the Union speeches. As a foreigner, I chose to de-politicize my analysis and focus on American values and people. I wanted to compare each speech to the Declaration of Independence, most particularly, how the keywords/American values of "American", "Equality", "Life", "Liberty" and "Happiness" were reflected in these speeches. 
