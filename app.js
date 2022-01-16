@@ -171,7 +171,7 @@ async function draw() {
             }
         }
 
-        topicData.sort((a, b) => b.topic - a.topic)
+        // topicData.sort((a, b) => b.topic - a.topic)
 
         console.log(topicData)
 
@@ -256,7 +256,8 @@ async function draw() {
         //---------------------------6(c). Draw topic Summary Bars
 
 
-        let topicsGroup = topicGroup.selectAll(".topic-bar")
+        let topicsGroup = bounds.select(".topic-bar")
+            .selectAll(".topic-bar")
             .data(topicData)
 
         topicsGroup.exit().remove()
@@ -265,12 +266,18 @@ async function draw() {
             .attr("class", "topic-bar")
 
         newTopicsGroup.append("rect")
+            .attr("x", dimensions.boundedWidth - 30)
+            .attr("y", d => topicYScale(rUTopicAccessor(d)) + 28)
+            .attr("width", d => topicXScale(rUcPctAccessor(d)))
+            .attr("height", topicYScale.bandwidth())
+            .attr("fill", d => colorScale(rUTopicAccessor(d)))
+
         newTopicsGroup.append("text")
 
         topicsGroup = newTopicsGroup.merge(topicsGroup)
 
-        const topicBars = topicsGroup.selectAll("rect")
-            .join("rect")
+        const topicBars = topicsGroup.select("rect")
+            // .transition().duration(400)
             .attr("x", dimensions.boundedWidth - 30)
             .attr("y", d => topicYScale(rUTopicAccessor(d)) + 28)
             .attr("width", d => topicXScale(rUcPctAccessor(d)))
@@ -280,12 +287,11 @@ async function draw() {
 
         const pctFormatter = d3.format(".1%")
 
-        const topicLabels = topicsGroup.selectAll("text")
-            .join("text")
-            .attr("x", d => dimensions.boundedWidth - 15 + topicXScale(rUcPctAccessor(d)))
+        const topicLabels = topicsGroup.select("text")
+            .attr("x", d => dimensions.boundedWidth - 22 + topicXScale(rUcPctAccessor(d)))
             .attr("y", d => topicYScale(rUTopicAccessor(d)) + 40)
             .text(d => pctFormatter(rUcPctAccessor(d)))
-            .style("text-anchor", "middle")
+            .style("text-anchor", "start")
             .attr("fill", "black")
             .style("font-size", "12px")
             .style("font-family", "Zen Kaku Gothic New")
