@@ -1,5 +1,9 @@
 @font-face { font-family: "MonumentExtended-Black"; 
-src: url('./assets/MonumentExtended-Black.woff2'); } 
+src: url('./assets/MonumentExtended-Black.woff'); } 
+
+/* @font-face { font-family: "RightGrotesk-SpatialBlack"; 
+    src: url('./assets/RightGrotesk-SpatialBlack.woff'); } */
+
 
 html {
   font-size: 14px;
@@ -8,6 +12,7 @@ max-width: 1400px;
 min-width: 1200px;
   background-color: white;
   box-sizing: border-box;
+  margin-left: 2rem;
 }
 
 *, *:before, *:after {
@@ -17,8 +22,10 @@ box-sizing: inherit;
 
 
 h1 {
-    font-family: 'MonumentExtended-Black';
-    font-size: 4em;
+    font-family: 'MonumentExtended-Black', sans-serif;
+    /* letter-spacing: 0.1px; */
+    font-size: 4rem;
+    margin-bottom: 0;
     color: 	#4B0082;
 }
 
@@ -112,9 +119,18 @@ svg {
 
 #metric {
     font-family: "MonumentExtended-Black";
-    font-size: 1.3em;
-    color: #006400;
+    font-size: 1rem;
+    text-align: center;
+    padding-top:3px;
+    height: 1.8rem;
+    color: white;
+    background-color: #006400;
+    border-radius: 4px;
     z-index: 9999;
+
+}
+.call-to-action {
+    /* text-decoration: underline; */
 }
 
 footer {

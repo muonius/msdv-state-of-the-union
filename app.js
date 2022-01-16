@@ -93,16 +93,17 @@ async function draw() {
 
 
     const keywordButton = d3.select("#metric")
-    keywordButton.style("transform", `translate(${dimensions.boundedWidth / 2}px,50px)`)
+    keywordButton.style("transform", `translate(${dimensions.boundedWidth / 2 - 55}px,12px)`)
         .style("display", "block")
+
 
     const buttonCall = bounds.append("text")
         .text("Toggle the Dropdown Menu to Find out More:")
-        .style("transform", `translate(${dimensions.boundedWidth / 2 - 200}px,5px)`)
+        .style("transform", `translateY(5px)`)
         .attr("font-family", "MonumentExtended-Black")
         .attr("font-size", "1.5em")
         .style("fill", "darkGreen")
-
+        .attr("class", "call-to-action")
 
     //***********************4. Create filterable charts
 
@@ -156,7 +157,7 @@ async function draw() {
 
         topicData.sort((a, b) => b.topic - a.topic)
 
-        console.log(topicData)
+        // console.log(topicData)
 
         const rUTopicAccessor = d => d.topic
         const rUcCountAccessor = d => d.count
@@ -195,8 +196,8 @@ async function draw() {
         //***************************6. Draw Data
 
         //---------------------------6(a) Draw Text Scores
-
-        let scoreGroup = dotChart.selectAll(".score-dot")
+        let scoreGroup = bounds.select(".score-dot")
+            .selectAll(".score-dot")
             .data(dataset.filter(d => keywordAccessor(d) === metric))
 
 
@@ -212,8 +213,7 @@ async function draw() {
         scoreGroup = newScoreGroup.merge(scoreGroup)
 
 
-        const scoreDots = scoreGroup.selectAll("circle")
-            .join("circle")
+        const scoreDots = scoreGroup.select("circle")
             .attr("cx", dimensions.boundedWidth / 2)
             .attr("cy", dimensions.boundedHeight / 2)
             .attr("r", d => scoreScale(scoreAccessor(d)))
@@ -223,8 +223,7 @@ async function draw() {
             .raise()
 
 
-        const scoreLabels = scoreGroup.selectAll("text")
-            .join("text")
+        const scoreLabels = scoreGroup.select("text")
             .attr("x", dimensions.boundedWidth / 2)
             .attr("y", dimensions.boundedHeight / 2)
             .text(textAccessor)
@@ -346,6 +345,7 @@ async function draw() {
         scoreDots.on("mouseenter", onMouseEnter)
             .on("mouseleave", onMouseLeave)
 
+
         function onMouseEnter(event, datum) {
             d3.select(this)
                 .attr("fill", (datum.president === "Obama" || datum.president === "Biden") ? "cornflowerblue" : "lightcoral")
@@ -361,6 +361,8 @@ async function draw() {
             const formatScore = d3.format(".2f")
             tooltip.select("#score")
                 .text(formatScore(datum.score))
+
+            console.log(datum)
 
             //Format tooltip position        
 
