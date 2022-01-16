@@ -65,7 +65,7 @@ async function draw() {
         .attr("width", 250)
         .attr("height", 170)
         .style("stroke", "darkGreen")
-        .style("stroke-opacity", 0.6)
+        .style("stroke-opacity", 0)
         .style("stroke-width", 2)
         .style("fill", "none")
 
@@ -81,7 +81,7 @@ async function draw() {
     const topicAxisGroup = bounds.append("g")
         // .attr("class", "topic-bar")
         .attr("class", "topic-y-axis")
-        .style("transform", `translateX(${dimensions.boundedWidth - 30}px)`)
+        .style("transform", `translate(${dimensions.boundedWidth - 30}px, 28px)`)
 
     const topicGroup = bounds.append("g")
         .attr("class", "topic-bar")
@@ -89,11 +89,27 @@ async function draw() {
     const topicBox = bounds.append("g")
         .attr("class", "topic-box")
 
+    const topicLabel = bounds.append("g")
+        .attr("class", "topic-label")
+    // .style("transform", `translate(${dimensions.boundedWidth - 200}px, 28px)`)
 
+    const introLabel = topicLabel.append("text")
+        .text("Breakdown of themes related to:")
+        .style("transform", `translate(${dimensions.boundedWidth - 155}px, 80px)`)
+        .attr("font-size", "14px")
+        .attr("font-family", "Zen Kaku Gothic New")
+        .attr("font-weight", "700")
+        .style("fill", "#004d00")
 
+    const divider = topicLabel.append("rect")
+        .attr("x", dimensions.boundedWidth - 160)
+        .attr("y", 85)
+        .attr("width", 270)
+        .attr("height", 0.5)
+        .attr("fill", "#004d00")
 
     const keywordButton = d3.select("#metric")
-    keywordButton.style("transform", `translate(${dimensions.boundedWidth / 2 - 55}px,12px)`)
+        // keywordButton.style("transform", `translate(${dimensions.boundedWidth / 2 - 55}px,12px)`)
         .style("display", "block")
 
 
@@ -126,7 +142,7 @@ async function draw() {
         // console.log(yearAccessor(dataset[0]))
 
         //-------------------4(b). Create 
-
+        const metricFormatter = metric[0].toUpperCase() + metric.slice(1)
         const topicRollup = d3.rollup(dataset.filter(d => keywordAccessor(d) === metric), v => v.length, topicAccessor)
 
         //   console.log(topicRollup)
@@ -157,7 +173,7 @@ async function draw() {
 
         topicData.sort((a, b) => b.topic - a.topic)
 
-        // console.log(topicData)
+        console.log(topicData)
 
         const rUTopicAccessor = d => d.topic
         const rUcCountAccessor = d => d.count
@@ -256,21 +272,50 @@ async function draw() {
         const topicBars = topicsGroup.selectAll("rect")
             .join("rect")
             .attr("x", dimensions.boundedWidth - 30)
-            .attr("y", d => topicYScale(rUTopicAccessor(d)))
+            .attr("y", d => topicYScale(rUTopicAccessor(d)) + 28)
             .attr("width", d => topicXScale(rUcPctAccessor(d)))
             .attr("height", topicYScale.bandwidth())
             .attr("fill", d => colorScale(rUTopicAccessor(d)))
 
 
-        const pctFormatter = d3.format(".0%")
+        const pctFormatter = d3.format(".1%")
+
         const topicLabels = topicsGroup.selectAll("text")
             .join("text")
             .attr("x", d => dimensions.boundedWidth - 15 + topicXScale(rUcPctAccessor(d)))
-            .attr("y", d => topicYScale(rUTopicAccessor(d)) + 12)
+            .attr("y", d => topicYScale(rUTopicAccessor(d)) + 40)
             .text(d => pctFormatter(rUcPctAccessor(d)))
             .style("text-anchor", "middle")
             .attr("fill", "black")
             .style("font-size", "12px")
+            .style("font-family", "Zen Kaku Gothic New")
+            .raise()
+
+        //---------------------------6(d). Draw topic Labels
+
+
+        let topicsLabel = topicLabel.selectAll(".topic-label")
+            .data(topicData)
+
+        topicsLabel.exit().remove()
+
+        const newTopicsLabel = topicsLabel.enter().append("g")
+            .attr("class", "topic-label")
+
+        newTopicsLabel.append("text")
+
+        topicsLabel = newTopicsLabel.merge(topicsLabel)
+
+        topicsLabel.selectAll("text")
+            .join("text")
+            .attr("x", dimensions.boundedWidth + 46)
+            .attr("y", 80)
+            .text(metricFormatter)
+            .attr("class", "promise-label")
+            .attr("fill", "#004d00")
+            .attr("text-anchor", "start")
+            .style("font-size", "14px")
+            .style("font-weight", "700")
             .style("font-family", "Zen Kaku Gothic New")
             .raise()
 
@@ -320,12 +365,15 @@ async function draw() {
         const tickLine = xAxis.selectAll(".tick line")
             .attr("stroke", "steelBlue")
             .attr("opacity", 0.2)
+            .attr("class", 'year-tick')
+            .style("transform", "translateY(-14px)")
 
         const xTickFont = xAxis.selectAll(".tick text")
             .attr("font-size", "16")
             .attr("font-family", "Zen Kaku Gothic New")
             .attr("class", "tick-font")
             .attr("color", "#4B0082")
+            .attr("font-weight", "400")
 
         const topicYAxisGenerator = d3.axisLeft().scale(topicYScale).tickSizeOuter(0)
 
@@ -353,7 +401,7 @@ async function draw() {
             //Fill in tooltip with text
 
             tooltip.select("#similar")
-                .text(metric)
+                .text(metricFormatter)
 
             tooltip.select("#similar-text")
                 .text(datum.text)
@@ -374,7 +422,7 @@ async function draw() {
             console.log(y)
 
             tooltip.style("transform", `translate(`
-                + `calc(-25% + ${x}px),`
+                + `calc(-8% + ${x}px),`
                 + `calc(180% + ${y}px)`
                 + `)`)
 
@@ -401,7 +449,7 @@ async function draw() {
     })
 
 
-    drawBubble('america')
+    drawBubble('american')
 
 } draw()
 

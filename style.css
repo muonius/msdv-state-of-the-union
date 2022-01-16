@@ -1,8 +1,8 @@
 @font-face { font-family: "MonumentExtended-Black"; 
 src: url('./assets/MonumentExtended-Black.woff'); } 
 
-/* @font-face { font-family: "RightGrotesk-SpatialBlack"; 
-    src: url('./assets/RightGrotesk-SpatialBlack.woff'); } */
+@font-face { font-family: "RightGrotesk-SpatialBlack"; 
+    src: url('./assets/RightGrotesk-SpatialBlack.woff'); }
 
 
 html {
@@ -35,6 +35,7 @@ h3 {
     width: 90%;
     font-size: 1.8em;
     color:  #001a00;
+    font-weight:400;
 }
 
 body {
@@ -103,6 +104,7 @@ svg {
     margin-bottom: 0.3em;
     margin-right: 0.5em;
     font-size: 1.5em;
+    font-weight: 500;
 }
 
 .tooltip-score {
@@ -118,11 +120,13 @@ svg {
 }
 
 #metric {
+    margin-left: 37rem;
+    transform: translateY(14px);
     font-family: "MonumentExtended-Black";
     font-size: 1rem;
     text-align: center;
     padding-top:3px;
-    height: 1.8rem;
+    height: 2rem;
     color: white;
     background-color: #006400;
     border-radius: 4px;
@@ -159,4 +163,13 @@ footer {
 
 .topic-y-axis .tick line {
     opacity: 0;
+}
+
+.promise {
+    background: rgb(0, 100, 0, 0.3);
+font-weight: 500;
+}
+
+.promise-label {
+    text-align: left;
 }
