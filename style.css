@@ -1,10 +1,6 @@
 @font-face { font-family: "MonumentExtended-Black"; 
 src: url('./assets/MonumentExtended-Black.woff'); } 
 
-@font-face { font-family: "RightGrotesk-SpatialBlack"; 
-    src: url('./assets/RightGrotesk-SpatialBlack.woff'); }
-
-
 html {
   font-size: 14px;
   /*font-family: 'Arial', sans-serif;*/
