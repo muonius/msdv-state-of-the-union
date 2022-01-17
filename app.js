@@ -101,14 +101,14 @@ async function draw() {
 
     const introLabel = topicLabel.append("text")
         .text("Breakdown of themes related to:")
-        .style("transform", `translate(${dimensions.boundedWidth - 155}px, 80px)`)
+        .style("transform", `translate(${dimensions.boundedWidth - 135}px, 80px)`)
         .attr("font-size", "14px")
         .attr("font-family", "Zen Kaku Gothic New")
         .attr("font-weight", "700")
         .style("fill", "#004d00")
 
     const divider = topicLabel.append("rect")
-        .attr("x", dimensions.boundedWidth - 160)
+        .attr("x", dimensions.boundedWidth - 135)
         .attr("y", 85)
         .attr("width", 270)
         .attr("height", 0.5)
@@ -127,7 +127,7 @@ async function draw() {
         .style("fill", "darkGreen")
         .attr("class", "call-to-action")
 
-    //
+    const contextBox = bounds.append('g')
 
     //***********************4. Create filterable charts
 
@@ -322,7 +322,7 @@ async function draw() {
 
         topicsLabel.selectAll("text")
             .join("text")
-            .attr("x", dimensions.boundedWidth + 46)
+            .attr("x", dimensions.boundedWidth + 66)
             .attr("y", 80)
             .text(initFormatter(metric))
             .attr("class", "promise-label")
@@ -398,6 +398,18 @@ async function draw() {
             .attr("font-family", "Zen Kaku Gothic New")
             .attr("font-size", "14")
 
+
+        //****************************Draw Foregin Object */
+
+        const foreign = contextBox.append("foreignObject")
+            .attr("class", "method")
+            .attr("x", dimensions.boundedWidth - 135)
+            .attr("y", dimensions.boundedHeight / 2 - 30)
+            .attr("width", 250)
+            .attr("height", dimensions.boundedHeight / 1.5)
+            .append("xhtml:div")
+            .style("line-height", "12px")
+            .html("<h3 style='font-size: 14px; font-weight: 700; color: #004d00;'>Data and Methods</h3><span style='font-size: 14px; line-height: 18px; color: black; font-family:Zen Kaku Gothic New;'>This is a word embedding exercise through which I <a href='https://github.com/muonius/msdv-state-of-the-union/blob/master/data/processing.py' target='_blank'>pre-processed</a> SOTU addresses by normalizing and tokenizing the corpus first and returned top keywords to five lemmatized topics using <a href='https://radimrehurek.com/gensim/models/word2vec.html' target='_blank' style='padding-top:0;'>Gensim Word2Vec embedding model.</a><p> Then I manually tagged the keywords with broader themes for an aggregated view of the context of the speeches. The <a href='https://github.com/muonius/msdv-state-of-the-union/blob/master/sotu_most_similar.csv target='_blank'>pre-processed data</a> is available here.<br>My goal is to de-politicize the topic, hence the departure from a blue/red color theme. Party information is subtly revealed only when hovered-over.</span>")
 
 
         //6. Add Interactions

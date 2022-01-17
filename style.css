@@ -81,7 +81,7 @@ svg {
     z-index: 10;
     transition: all 0.2s ease-out;
     pointer-events: none;
-    font-family: "Zen Kaku Gothic New";
+    /* font-family: "Zen Kaku Gothic New"; */
 }
 
 .tooltip:before {
