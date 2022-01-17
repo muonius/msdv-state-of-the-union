@@ -426,7 +426,7 @@ async function draw() {
                 .attr("height", dimensions.boundedHeight / 2 - 50)
                 .append("xhtml:div")
                 .style("line-height", "12px")
-                .html("<h3 style='font-size: 14px; font-weight: 700; color: #004d00;'>Observations</h3><span style='font-size: 14px; line-height: 18px; color: black; font-family:Zen Kaku Gothic New;'>One notable observation I had was the Gensim model seemed to perform better on Trump’s speeches – in other words, even the machine found his speeches more digestible and/or relatable. <br><br>The United States is the only country where the pursuit of happiness is promised in writing. Yet, who mentioned “happy” or “happiness” in the past 10 years’ SOTU speeches? Trump and him alone.</span>")
+                .html("<h3 style='font-size: 14px; font-weight: 700; color: #004d00;'>Observations</h3><span style='font-size: 14px; line-height: 18px; color: black; font-family:Zen Kaku Gothic New;'>One notable observation I had was the Gensim model seemed to perform better on Trump’s speeches – in other words, even the machine found his speeches more digestible and/or relatable. <br><br>The United States is the only country where the pursuit of happiness is promised in writing. Yet, who mentioned “happy” or “happiness” in the past 10 years’ SOTU speeches? Trump and he alone.</span>")
 
         } else {
             d3.select(".happy").attr("opacity", 0)
