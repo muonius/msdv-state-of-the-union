@@ -19,7 +19,7 @@ I chose `d3.js` bubble chart for my visualization. The size of the bubbles indic
 <img src="./screenshot.png" width="800" alt="Visualization Screenshot">
 
 ### Outcome
-I discovered that the model has a better outcome when it comes to Trump's speeches. They seem to be more digestable and relatable even from a model output perspective. Trump was the only one who mentioned "happy" or "happiness" in the past 10 years' SOTU addresses. A speech is not what you want to convey but what the audience perceives. This mini analysis is far from adequate to draw any conclusion but I think it invites more questions and interests in Trump's speeches and the effectiness of his communication style. An interesting read [here] (https://www.firstrand.co.za/perspectives/an-analysis-of-president-donald-trump-s-use-of-language/) on Trump's use of language that focuses on "repetition", "intensifiers" and "directness" seems to be validated by the model output.
+I discovered that the model has a better outcome when it comes to Trump's speeches. They seem to be more digestable and relatable even from a model output perspective. Trump was the only one who mentioned "happy" or "happiness" in the past 10 years' SOTU addresses. A speech is not what you want to convey but what the audience perceives. This mini analysis is far from adequate to draw any conclusion but I think it invites more questions and interests in Trump's speeches and the effectiness of his communication style. An interesting read [here](https://www.firstrand.co.za/perspectives/an-analysis-of-president-donald-trump-s-use-of-language/) on Trump's use of language that focuses on "repetition", "intensifiers" and "directness" seems to be validated by the model output.
 
 
 ### Limitations
