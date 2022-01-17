@@ -4,7 +4,7 @@
 This is a weekly assignment of visualizing textual data at the Data Vis & Info Aesthetics class. I touched it up and fixed some remaining bugs after submitting the assignment.
 
 ### Process
-I chose to analyze the past 10 years State of the Union addresses to Congress. As a foreigner, I chose to de-politicize my analysis and focus on American values from an outsider's perspective. I wanted to compare each speech to the Declaration of Independence, most particularly, how the keywords/American values of "American", "Equality", "Life", "Liberty" and "Happiness" were reflected in these speeches. 
+I chose to analyze the past 10 years State of the Union addresses to Congress. As a foreigner, I decided to de-politicize my analysis and focus on American values from an outsider's perspective. I wanted to compare each speech to the Declaration of Independence, most particularly, how the keywords/American values of "American", "Equality", "Life", "Liberty" and "Happiness" were reflected in these speeches. It is my opinion that to not go into any analysis with a biased lens, despite we are all inevitably biased. 
 
 ### Text Processing
 I pre-processed the corpus using normalization and tokenization methods and then I used the [Gensim Word2Vec model](https://tedboy.github.io/nlps/generated/generated/gensim.models.Word2Vec.most_similar.html) to train and output top most similar words related to the abovementioned keywards in each speech.
