@@ -186,4 +186,19 @@ font-weight: 500;
     /* backdrop-filter: opacity(10%); */
 }
   
-				
+ .icon {
+    margin: auto;
+    vertical-align: middle; 
+    display: inline-block;
+    transform: translate(15%,-25%);
+    fill: green;
+   } 
+
+   .icon:hover {
+   transform: translate(25%,-35%);
+    } 				 
+
+    #filler {
+        opacity: 0;
+        font-size: 2px;
+    }
