@@ -80,7 +80,7 @@ async function draw() {
 
     const axesGroup = bounds.append("g")
         .attr("class", "x-axis")
-        .style("transform", `translate(10px, ${dimensions.boundedHeight - 50}px)`)
+        .style("transform", `translate(20px, ${dimensions.boundedHeight - 50}px)`)
         .append("text")
         .attr("class", "x-axis-label")
 
@@ -121,7 +121,7 @@ async function draw() {
 
     const buttonCall = bounds.append("text")
         .text("Toggle the Dropdown Menu to Find out More:")
-        .style("transform", `translate(-40px,-5px)`)
+        // .style("transform", `translate(-10px,-5px)`)
         .attr("font-family", "MonumentExtended-Black")
         .attr("font-size", "1.5em")
         .style("fill", "darkGreen")
@@ -339,7 +339,7 @@ async function draw() {
         const simulation = d3.forceSimulation()
             .force("x", d3.forceX().strength(1).x(d => xScale(yearAccessor(d))))
             // .force("y", d3.forceY().strength(0.0001).y(d => xScale(yearAccessor(d)) % 2 ===0 ? dimensions.boundedHeight/2 - 50 : dimensions.boundedHeight/2 + 50))/
-            .force("center", d3.forceCenter().x(dimensions.boundedWidth / 2 - 130).y(dimensions.boundedHeight / 2)) // Attraction to the center of the svg area
+            .force("center", d3.forceCenter().x(dimensions.boundedWidth / 2 - 120).y(dimensions.boundedHeight / 2)) // Attraction to the center of the svg area
             .force("charge", d3.forceManyBody().strength(0.1).distanceMax(0.1).distanceMin(0.01))// 
             //   .force("radial", d3.forceRadial(d => xScale(yearAccessor(d))).strength(0.8))
             .force("collide", d3.forceCollide().strength(0.005).radius(d => scoreScale(scoreAccessor(d))).iterations(1))// Force that avoids circle overlapping
@@ -403,16 +403,38 @@ async function draw() {
 
         const foreign = contextBox.append("foreignObject")
             .attr("class", "method")
-            .attr("x", dimensions.boundedWidth - 175)
+            .attr("x", dimensions.boundedWidth - 185)
             .attr("y", dimensions.boundedHeight / 2 - 30)
             .attr("width", 250)
             .attr("height", dimensions.boundedHeight / 1.5)
             .append("xhtml:div")
             .style("line-height", "12px")
-            .html("<h3 style='font-size: 14px; font-weight: 700; color: #004d00;'>Data and Methods</h3><span style='font-size: 14px; line-height: 18px; color: black; font-family:Zen Kaku Gothic New;'>This is a word embedding exercise through which I <a href='https://github.com/muonius/msdv-state-of-the-union/blob/master/data/processing.py' target='_blank'>pre-processed</a> SOTU addresses by normalizing and tokenizing the corpus first and returned top keywords to five lemmatized topics using <a href='https://radimrehurek.com/gensim/models/word2vec.html' target='_blank' style='padding-top:0;'>Gensim Word2Vec embedding model.</a><p> Then I manually tagged the keywords with broader themes for an aggregated view of the context of the speeches. The <a href='https://github.com/muonius/msdv-state-of-the-union/blob/master/sotu_most_similar.csv target='_blank'>pre-processed data</a> is available here.<br>My goal is to de-politicize the topic, hence the departure from a blue/red color theme. Party information is subtly revealed only when hovered-over.</span>")
+            .html("<h3 style='font-size: 14px; font-weight: 700; color: #004d00;'>Data and Methods</h3><span style='font-size: 14px; line-height: 18px; color: black; font-family:Zen Kaku Gothic New;'>This is a word embedding exercise through which I <a href='https://github.com/muonius/msdv-state-of-the-union/blob/master/data/processing.py' target='_blank'>pre-processed</a> SOTU addresses by normalizing and tokenizing the corpus first and returned top keywords to five lemmatized topics using <a href='https://radimrehurek.com/gensim/models/word2vec.html' target='_blank' style='padding-top:0;'>Gensim Word2Vec embedding model.</a><p> Then I manually tagged the keywords with broader themes for an aggregated view of the context of the speeches. The <a href='https://github.com/muonius/msdv-state-of-the-union/blob/master/sotu_most_similar.csv' target='_blank'>pre-processed data</a> is available here.<br>My goal is to de-politicize the topic, hence the departure from a blue/red color theme. Party information is subtly revealed only when hovered-over.</span>")
 
 
         //6. Add Interactions
+
+
+        //*********Add Happy Function */
+        let foreignHappy;
+
+        if (metric === 'happiness') {
+
+            foreignHappy = contextBox.append("foreignObject")
+                .attr("class", "happy")
+                .attr("x", dimensions.margin.left + 100)
+                .attr("y", dimensions.boundedHeight / 2 - 200)
+                .attr("width", 250)
+                .attr("height", dimensions.boundedHeight / 2 - 50)
+                .append("xhtml:div")
+                .style("line-height", "12px")
+                .html("<h3 style='font-size: 14px; font-weight: 700; color: #004d00;'>Observations</h3><span style='font-size: 14px; line-height: 18px; color: black; font-family:Zen Kaku Gothic New;'>One notable observation I had was the Gensim model seemed to perform better on Trump’s speeches – in other words, even the machine found his speeches more digestible and/or relatable. <br><br>The United States is the only country where the pursuit of happiness is promised in writing. Yet, who mentioned “happy” or “happiness” in past 10 years’ SOTU speeches? Trump and him alone.</span>")
+
+        } else {
+            d3.select(".happy").attr("opacity", 0)
+        }
+
+
 
 
         scoreDots.on("mouseenter", onMouseEnter)
@@ -456,7 +478,7 @@ async function draw() {
             console.log(y)
 
             tooltip.style("transform", `translate(`
-                + `calc(3% + ${x}px),`
+                + `calc(-20% + ${x}px),`
                 + `calc(130% + ${y}px)`
                 + `)`)
 
