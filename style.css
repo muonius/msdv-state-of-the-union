@@ -184,10 +184,9 @@ font-weight: 500;
   
  .icon {
     margin: auto;
-    vertical-align: middle; 
+    vertical-align: bottom; 
     display: inline-block;
     transform: translate(15%,-25%);
-    fill: green;
    } 
 
    .icon:hover {
