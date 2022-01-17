@@ -2,7 +2,7 @@
 
 async function draw() {
 
-    //****************************1. Access Data
+    //****************************1.1 Access Data
 
     const dataset = await d3.csv("./sotu_most_similar.csv", (d) => {
         d3.autoType(d)
@@ -16,7 +16,7 @@ async function draw() {
 
     const topics = ["other", "society", "security", "science & tech", "international", "humanity", "economy"]
 
-    //*************************1.1 Helper Functions */
+    //*************************1.2 Helper Functions */
 
     function initFormatter(str) {
         return str[0].toUpperCase() + str.slice(1)
@@ -45,7 +45,7 @@ async function draw() {
         - dimensions.margin.top
         - dimensions.margin.bottom
 
-    //*************************3. Draw Canvas 
+    //*************************3.1 Draw Canvas 
 
     const wrapper = d3.select("#wrapper")
         .append("svg")
@@ -60,7 +60,7 @@ async function draw() {
 
     const legendtip = d3.select("#legendtip")
 
-    //----------------------- 3(a). Init static elements
+    //************************/ 3.2. Init static elements
 
     const backdrop = bounds.append('g')
         .attr("class", "backdrop")
@@ -129,7 +129,7 @@ async function draw() {
 
     const contextBox = bounds.append('g')
 
-    //***********************4. Create filterable charts
+    //***********************4.1 Create filterable charts
 
     const drawBubble = metric => {
 
@@ -149,7 +149,7 @@ async function draw() {
         // console.log(topicAccessor(dataset[0]))
         // console.log(yearAccessor(dataset[0]))
 
-        //-------------------4(b). Create 
+        //***********************4.2 Create Rollup Data
 
         const topicRollup = d3.rollup(dataset.filter(d => keywordAccessor(d) === metric), v => v.length, topicAccessor)
 
@@ -217,8 +217,7 @@ async function draw() {
 
 
 
-        //***************************6. Draw Data
-
+        //***************************6.1 Draw Charts
         //---------------------------6(a) Draw Text Scores
         let scoreGroup = bounds.select(".score-dot")
             .selectAll(".score-dot")
@@ -261,7 +260,7 @@ async function draw() {
 
 
 
-        //---------------------------6(c). Draw topic Summary Bars
+        //************************6.2 Draw topic Summary Bars
 
 
         let topicsGroup = bounds.select(".topic-bar")
@@ -305,7 +304,7 @@ async function draw() {
             .style("font-family", "Zen Kaku Gothic New")
             .raise()
 
-        //---------------------------6(d). Draw topic Labels
+        //********************************6.3. Draw topic Labels
 
 
         let topicsLabel = topicLabel.selectAll(".topic-label")
@@ -334,7 +333,8 @@ async function draw() {
             .raise()
 
 
-        // ------------------------------6(b). Creation Simuation 
+        // ***************************7. Creation Simuation 
+
         // Features of the forces applied to the nodes:
         const simulation = d3.forceSimulation()
             .force("x", d3.forceX().strength(1).x(d => xScale(yearAccessor(d))))
@@ -361,10 +361,6 @@ async function draw() {
 
 
         // invalidation.then(() => simulation.stop());
-
-
-
-
 
         //***************************8. Draw Peripherals
 
@@ -399,7 +395,7 @@ async function draw() {
             .attr("font-size", "14")
 
 
-        //****************************Draw Foregin Object */
+        //****************************9.1 Draw Foregin Object */
 
         const foreign = contextBox.append("foreignObject")
             .attr("class", "method")
@@ -412,10 +408,10 @@ async function draw() {
             .html("<h3 style='font-size: 14px; font-weight: 700; color: #004d00;'>Data and Methods</h3><span style='font-size: 14px; line-height: 18px; color: black; font-family:Zen Kaku Gothic New;'>This is a word embedding exercise through which I <a href='https://github.com/muonius/msdv-state-of-the-union/blob/master/data/processing.py' target='_blank'>pre-processed</a> SOTU addresses by normalizing and tokenizing the corpus first and returned top most similar keywords to five lemmatized topics using <a href='https://radimrehurek.com/gensim/models/word2vec.html' target='_blank' style='padding-top:0;'>Gensim Word2Vec embedding model.</a><p> Then I manually tagged the keywords with broader themes for an aggregated view of the context of the speeches. The <a href='https://github.com/muonius/msdv-state-of-the-union/blob/master/sotu_most_similar.csv' target='_blank'>pre-processed data</a> is available here.<br>My goal is to de-politicize the topic, hence the departure from a blue/red color theme. Party information is subtly revealed only when hovered-over.</span>")
 
 
-        //6. Add Interactions
+        //*****************************10. Add Interactions
 
 
-        //*********Add Happy Function */
+        //****************************9.2 Add and Remove Happy Foregin Object */
         let foreignHappy;
 
         if (metric === 'happiness') {
@@ -433,8 +429,6 @@ async function draw() {
         } else {
             d3.select(".happy").attr("opacity", 0)
         }
-
-
 
 
         scoreDots.on("mouseenter", onMouseEnter)
