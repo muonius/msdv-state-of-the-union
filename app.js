@@ -422,11 +422,11 @@ async function draw() {
                 .attr("class", "happy")
                 .attr("x", dimensions.margin.left + 100)
                 .attr("y", dimensions.boundedHeight / 2 - 200)
-                .attr("width", 250)
-                .attr("height", dimensions.boundedHeight / 2 - 50)
+                .attr("width", dimensions.boundedWidth / 4.5)
+                .attr("height", dimensions.boundedHeight / 2)
                 .append("xhtml:div")
                 .style("line-height", "12px")
-                .html("<h3 style='font-size: 14px; font-weight: 700; color: #004d00;'>Observations</h3><span style='font-size: 14px; line-height: 18px; color: black; font-family:Zen Kaku Gothic New;'>One notable observation I had was the Gensim model seemed to perform better on Trump’s speeches – in other words, even the machine found his speeches more digestible and/or relatable. <br><br>The United States is the only country where the pursuit of happiness is promised in writing. Yet, who mentioned “happy” or “happiness” in the past 10 years’ SOTU speeches? Trump and he alone.</span>")
+                .html("<h3 style='font-size: 14px; font-weight: 700; color: #004d00;'>Observations</h3><span style='font-size: 14px; line-height: 18px; color: black; font-family:Zen Kaku Gothic New;'>One notable observation I had was the Gensim model seemed to perform better on Trump’s speeches – in other words, even the machine found his speeches more digestible and/or relatable. His use of languages which emphasizes on \"repetition\", \"intensifiers\" and \"directness\" surely makes it easier for a machine to decipher information. What about human audience?<br><br>The United States is the only country where the pursuit of happiness is promised in writing. Yet, who mentioned “happy” or “happiness” in the past 10 years’ SOTU speeches? Trump and he alone.</span>")
 
         } else {
             d3.select(".happy").attr("opacity", 0)
