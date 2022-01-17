@@ -33,7 +33,7 @@ async function draw() {
             top: 80,
             right: 50,
             bottom: 50,
-            left: 100
+            left: 20,
         }
     }
 
@@ -66,7 +66,7 @@ async function draw() {
         .attr("class", "backdrop")
 
     const topicRect = backdrop.append("rect")
-        .attr("x", dimensions.boundedWidth - 140)
+        .attr("x", dimensions.boundedWidth - 180)
         .attr("y", dimensions.margin.top - 10)
         .attr("width", 250)
         .attr("height", 170)
@@ -80,14 +80,14 @@ async function draw() {
 
     const axesGroup = bounds.append("g")
         .attr("class", "x-axis")
-        .style("transform", `translate(50px, ${dimensions.boundedHeight - 50}px)`)
+        .style("transform", `translate(10px, ${dimensions.boundedHeight - 50}px)`)
         .append("text")
         .attr("class", "x-axis-label")
 
     const topicAxisGroup = bounds.append("g")
         // .attr("class", "topic-bar")
         .attr("class", "topic-y-axis")
-        .style("transform", `translate(${dimensions.boundedWidth - 30}px, 28px)`)
+        .style("transform", `translate(${dimensions.boundedWidth - 70}px, 28px)`)
 
     const topicGroup = bounds.append("g")
         .attr("class", "topic-bar")
@@ -101,27 +101,27 @@ async function draw() {
 
     const introLabel = topicLabel.append("text")
         .text("Breakdown of themes related to:")
-        .style("transform", `translate(${dimensions.boundedWidth - 135}px, 80px)`)
+        .style("transform", `translate(${dimensions.boundedWidth - 185}px, 80px)`)
         .attr("font-size", "14px")
         .attr("font-family", "Zen Kaku Gothic New")
         .attr("font-weight", "700")
         .style("fill", "#004d00")
 
     const divider = topicLabel.append("rect")
-        .attr("x", dimensions.boundedWidth - 135)
+        .attr("x", dimensions.boundedWidth - 185)
         .attr("y", 85)
         .attr("width", 270)
         .attr("height", 0.5)
         .attr("fill", "#004d00")
 
     const keywordButton = d3.select("#metric")
-        // keywordButton.style("transform", `translate(${dimensions.boundedWidth / 2 - 55}px,12px)`)
+        // keywordButton.style("transform", `translate(${dimensions.boundedWidth / 2 - 200}px,12px)`)
         .style("display", "block")
 
 
     const buttonCall = bounds.append("text")
         .text("Toggle the Dropdown Menu to Find out More:")
-        .style("transform", `translateY(5px)`)
+        .style("transform", `translate(-40px,-5px)`)
         .attr("font-family", "MonumentExtended-Black")
         .attr("font-size", "1.5em")
         .style("fill", "darkGreen")
@@ -202,7 +202,7 @@ async function draw() {
 
         const xScale = d3.scaleTime()
             .domain(d3.extent(dataset, yearAccessor))
-            .range([0, dimensions.boundedWidth - 250])
+            .range([0, dimensions.boundedWidth - 300])
             .nice()
 
         const topicXScale = d3.scaleLinear()
@@ -274,7 +274,7 @@ async function draw() {
             .attr("class", "topic-bar")
 
         newTopicsGroup.append("rect")
-            .attr("x", dimensions.boundedWidth - 30)
+            .attr("x", dimensions.boundedWidth - 60)
             .attr("y", d => topicYScale(rUTopicAccessor(d)) + 28)
             .attr("width", d => topicXScale(rUcPctAccessor(d)))
             .attr("height", topicYScale.bandwidth())
@@ -286,7 +286,7 @@ async function draw() {
 
         const topicBars = topicsGroup.select("rect")
             // .transition().duration(400)
-            .attr("x", dimensions.boundedWidth - 30)
+            .attr("x", dimensions.boundedWidth - 60)
             .attr("y", d => topicYScale(rUTopicAccessor(d)) + 28)
             .attr("width", d => topicXScale(rUcPctAccessor(d)))
             .attr("height", topicYScale.bandwidth())
@@ -296,7 +296,7 @@ async function draw() {
         const pctFormatter = d3.format(".1%")
 
         const topicLabels = topicsGroup.select("text")
-            .attr("x", d => dimensions.boundedWidth - 22 + topicXScale(rUcPctAccessor(d)))
+            .attr("x", d => dimensions.boundedWidth - 52 + topicXScale(rUcPctAccessor(d)))
             .attr("y", d => topicYScale(rUTopicAccessor(d)) + 40)
             .text(d => pctFormatter(rUcPctAccessor(d)))
             .style("text-anchor", "start")
@@ -322,7 +322,7 @@ async function draw() {
 
         topicsLabel.selectAll("text")
             .join("text")
-            .attr("x", dimensions.boundedWidth + 66)
+            .attr("x", dimensions.boundedWidth + 20)
             .attr("y", 80)
             .text(initFormatter(metric))
             .attr("class", "promise-label")
@@ -339,7 +339,7 @@ async function draw() {
         const simulation = d3.forceSimulation()
             .force("x", d3.forceX().strength(1).x(d => xScale(yearAccessor(d))))
             // .force("y", d3.forceY().strength(0.0001).y(d => xScale(yearAccessor(d)) % 2 ===0 ? dimensions.boundedHeight/2 - 50 : dimensions.boundedHeight/2 + 50))/
-            .force("center", d3.forceCenter().x(dimensions.boundedWidth / 2 - 65).y(dimensions.boundedHeight / 2)) // Attraction to the center of the svg area
+            .force("center", d3.forceCenter().x(dimensions.boundedWidth / 2 - 130).y(dimensions.boundedHeight / 2)) // Attraction to the center of the svg area
             .force("charge", d3.forceManyBody().strength(0.1).distanceMax(0.1).distanceMin(0.01))// 
             //   .force("radial", d3.forceRadial(d => xScale(yearAccessor(d))).strength(0.8))
             .force("collide", d3.forceCollide().strength(0.005).radius(d => scoreScale(scoreAccessor(d))).iterations(1))// Force that avoids circle overlapping
@@ -403,7 +403,7 @@ async function draw() {
 
         const foreign = contextBox.append("foreignObject")
             .attr("class", "method")
-            .attr("x", dimensions.boundedWidth - 135)
+            .attr("x", dimensions.boundedWidth - 175)
             .attr("y", dimensions.boundedHeight / 2 - 30)
             .attr("width", 250)
             .attr("height", dimensions.boundedHeight / 1.5)
@@ -456,7 +456,7 @@ async function draw() {
             console.log(y)
 
             tooltip.style("transform", `translate(`
-                + `calc(-12% + ${x}px),`
+                + `calc(3% + ${x}px),`
                 + `calc(130% + ${y}px)`
                 + `)`)
 

@@ -12,7 +12,7 @@ max-width: 1400px;
 min-width: 1200px;
   background-color: white;
   box-sizing: border-box;
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 
 *, *:before, *:after {
@@ -81,7 +81,7 @@ svg {
     z-index: 10;
     transition: all 0.2s ease-out;
     pointer-events: none;
-    /* font-family: "Zen Kaku Gothic New"; */
+    font-family: "Zen Kaku Gothic New";
 }
 
 .tooltip:before {

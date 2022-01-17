@@ -42,38 +42,52 @@
         </select>
     </div>
 
+    <section id='scrolly-overlay'>
+        <!--  sticky graphic   -->
+        <figure class='sticky'>
+            <div id="wrapper" class="wrapper">
 
+                <div id="tooltip" class="tooltip">
+                    <div class="tooltip-similar">
+                        Similar to: <span id="similar"></span>
+                    </div>
+                    <div class="tooltip-similar-text">
+                        Keyword: <span id="similar-text"></span>
+                    </div>
+                    <div class="tooltip-similar-theme">
+                        Related Theme: <span id="similar-theme"></span>
+                    </div>
+                    <div class="tooltip-score">
+                        Similarity Score: <span id="score"></span>
+                    </div>
 
-    <div id="wrapper" class="wrapper">
-
-        <div id="tooltip" class="tooltip">
-            <div class="tooltip-similar">
-                Similar to: <span id="similar"></span>
-            </div>
-            <div class="tooltip-similar-text">
-                Keyword: <span id="similar-text"></span>
-            </div>
-            <div class="tooltip-similar-theme">
-                Related Theme: <span id="similar-theme"></span>
-            </div>
-            <div class="tooltip-score">
-                Similarity Score: <span id="score"></span>
+                    <!--     <div id="legendtip" class="legendtip">-->
+                    <!--       <div class="legendtip-topic">  -->
+                    <!--       Topic: <span id ="topic"></span>-->
+                    <!--       </div>-->
+                    <!--        <div class="legendtip-pct">  -->
+                    <!--       Pct of Total: <span id ="pct"></span>-->
+                    <!--       </div>-->
+                    <!--</div>-->
+                </div>
             </div>
 
-            <!--     <div id="legendtip" class="legendtip">-->
-            <!--       <div class="legendtip-topic">  -->
-            <!--       Topic: <span id ="topic"></span>-->
-            <!--       </div>-->
-            <!--        <div class="legendtip-pct">  -->
-            <!--       Pct of Total: <span id ="pct"></span>-->
-            <!--       </div>-->
-            <!--</div>-->
-        </div>
-    </div>
+        </figure>
+
+        <!--  step text   -->
+        <article>
+            <div class='step' data-width='10%' data-index='0'>
+                <p>Hello</p>
+            </div>
+        </article>
+        <footer> Zhao Yang | Data Vis & Info Aesthetics Assignment 3 | Fall 2021</footer>
+    </section>
     <script src="https://unpkg.com/d3"></script>
     <script src="https://unpkg.com/@observablehq/stdlib@3"></script>
+    <script src="https://unpkg.com/enter-view@1.0.0/enter-view.min.js"></script>
+    <script src="https://unpkg.com/stickyfilljs@2.0.5/dist/stickyfill.js"></script>
     <script src="app.js"></script>
-    <footer> Zhao Yang | Data Vis & Info Aesthetics Assignment 3 | Fall 2021</footer>
+
 </body>
 
 </html>
