@@ -16,7 +16,7 @@ After gathering the improved keywords, I mannually tagged them with seven major 
 ### Visualization
 I chose `d3.js` bubble chart for my visualization. The size of the bubbles indicates the `similarity score`. However, in my opinion, the `similarity score` values don't hold significant value so I did not sort or arrange the bubble chart based on `similarity score` values, rather, I have them somewhat randomized.
 
-<img src="./Yang Zhao-03-visualize-text.png" width="800" alt="Visualization Screenshot">
+<img src="./screenshot.png" width="800" alt="Visualization Screenshot">
 
 ### Outcome
 I discovered that the model has a better outcome when it comes to Trump's speeches. They seem to be more digestable and relatable even from a model output perspective. Trump was the only one who mentioned "happy" or "happiness" in the past 10 years' SOTU addresses. No wonder half of this country voted for him.
