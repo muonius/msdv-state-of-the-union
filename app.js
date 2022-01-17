@@ -16,6 +16,12 @@ async function draw() {
 
     const topics = ["other", "society", "security", "science & tech", "international", "humanity", "economy"]
 
+    //*************************1.1 Helper Functions */
+
+    function initFormatter(str) {
+        return str[0].toUpperCase() + str.slice(1)
+    }
+
     //****************************2. Draw Dimensions
 
     const width = window.innerWidth * 0.9;
@@ -121,6 +127,8 @@ async function draw() {
         .style("fill", "darkGreen")
         .attr("class", "call-to-action")
 
+    //
+
     //***********************4. Create filterable charts
 
     const drawBubble = metric => {
@@ -142,7 +150,7 @@ async function draw() {
         // console.log(yearAccessor(dataset[0]))
 
         //-------------------4(b). Create 
-        const metricFormatter = metric[0].toUpperCase() + metric.slice(1)
+
         const topicRollup = d3.rollup(dataset.filter(d => keywordAccessor(d) === metric), v => v.length, topicAccessor)
 
         //   console.log(topicRollup)
@@ -198,8 +206,8 @@ async function draw() {
             .nice()
 
         const topicXScale = d3.scaleLinear()
-            .domain(d3.extent(topicData, rUcPctAccessor))
-            .range([0, 100])
+            .domain([0, 1])
+            .range([0, 150])
 
 
         const topicYScale = d3.scaleBand()
@@ -316,7 +324,7 @@ async function draw() {
             .join("text")
             .attr("x", dimensions.boundedWidth + 46)
             .attr("y", 80)
-            .text(metricFormatter)
+            .text(initFormatter(metric))
             .attr("class", "promise-label")
             .attr("fill", "#004d00")
             .attr("text-anchor", "start")
@@ -383,7 +391,6 @@ async function draw() {
 
         const topicYAxisGenerator = d3.axisLeft().scale(topicYScale).tickSizeOuter(0)
 
-
         const topicYAxis = bounds.select(".topic-y-axis")
             .call(topicYAxisGenerator)
 
@@ -407,14 +414,23 @@ async function draw() {
             //Fill in tooltip with text
 
             tooltip.select("#similar")
-                .text(metricFormatter)
+                .text(initFormatter(metric))
+                .style("font-weight", "700")
+                .style("font-size", "16px")
 
             tooltip.select("#similar-text")
                 .text(datum.text)
+                .style("font-weight", "700")
+
+            tooltip.select("#similar-theme")
+                .text(datum.topic)
+                .style("font-weight", "700")
 
             const formatScore = d3.format(".2f")
+
             tooltip.select("#score")
                 .text(formatScore(datum.score))
+                .style("font-weight", "700")
 
             console.log(datum)
 

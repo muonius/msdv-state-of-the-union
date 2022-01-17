@@ -119,6 +119,12 @@ svg {
     
 }
 
+.tooltip-similar-theme {
+    margin-bottom: 0.3em;
+    font-size: 1.2em;
+    
+}
+
 #metric {
     margin-left: 37rem;
     transform: translateY(14px);
