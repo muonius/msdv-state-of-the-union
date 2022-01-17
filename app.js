@@ -121,7 +121,7 @@ async function draw() {
 
     const buttonCall = bounds.append("text")
         .text("Toggle the Dropdown Menu to Find out More:")
-        // .style("transform", `translate(-10px,-5px)`)
+        .style("transform", `translateY(5px)`)
         .attr("font-family", "MonumentExtended-Black")
         .attr("font-size", "1.5em")
         .style("fill", "darkGreen")
