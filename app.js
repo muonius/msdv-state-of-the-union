@@ -444,8 +444,8 @@ async function draw() {
             console.log(y)
 
             tooltip.style("transform", `translate(`
-                + `calc(-8% + ${x}px),`
-                + `calc(180% + ${y}px)`
+                + `calc(-12% + ${x}px),`
+                + `calc(130% + ${y}px)`
                 + `)`)
 
 
