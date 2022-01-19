@@ -422,7 +422,7 @@ async function draw() {
                 .attr("class", "happy")
                 .attr("x", dimensions.margin.left + 100)
                 .attr("y", dimensions.boundedHeight / 2 - 200)
-                .attr("width", dimensions.boundedWidth / 4.5)
+                .attr("width", dimensions.boundedWidth / 4)
                 .attr("height", dimensions.boundedHeight / 2)
                 .append("xhtml:div")
                 .style("line-height", "12px")
